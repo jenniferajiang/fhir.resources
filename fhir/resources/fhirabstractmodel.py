@@ -516,7 +516,7 @@ class FHIRAbstractModel(BaseModel, abc.ABC):
         error_msg_templates = {"value_error.extra": "extra fields not permitted"}
 
         @staticmethod
-        def schema_extra(schema: Dict[str, Any], model: Type['FHIRAbstractModel']) -> None:
+        def schema_extra(schema: typing.Dict[str, typing.Any], model: typing.Type['FHIRAbstractModel']) -> None:
             current_schema = schema.get('properties', {})
 
             for key in list(current_schema.keys()):
