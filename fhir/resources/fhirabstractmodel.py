@@ -514,3 +514,11 @@ class FHIRAbstractModel(BaseModel, abc.ABC):
         extra = Extra.forbid
         validate_assignment = True
         error_msg_templates = {"value_error.extra": "extra fields not permitted"}
+
+        @staticmethod
+        def schema_extra(schema: Dict[str, Any], model: Type['FHIRAbstractModel']) -> None:
+            current_schema = schema.get('properties', {})
+
+            for key in list(current_schema.keys()):
+                if "_" in key:
+                    current_schema.pop(key)
